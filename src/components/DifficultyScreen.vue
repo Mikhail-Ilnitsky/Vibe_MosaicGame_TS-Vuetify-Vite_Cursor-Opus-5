@@ -19,13 +19,15 @@ const grids = computed(() =>
 <template>
   <section class="difficulty">
     <div class="difficulty__head">
-      <div>
+      <div class="difficulty__heading">
         <h2 class="screen-title">{{ t('difficulty.title') }}</h2>
         <p class="screen-subtitle">
           {{ t('difficulty.subtitle', { title: props.image.title[locale] }) }}
         </p>
       </div>
-      <v-btn variant="text" size="large" @click="emit('exit')">{{ t('exit') }}</v-btn>
+      <v-btn variant="text" size="large" class="difficulty__exit" @click="emit('exit')">
+        <span class="difficulty__exit-label">{{ t('exit') }}</span>
+      </v-btn>
     </div>
 
     <div class="difficulty__body">
@@ -79,6 +81,25 @@ const grids = computed(() =>
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+  min-width: 0;
+}
+
+.difficulty__heading {
+  min-width: 0;
+}
+
+.difficulty__exit {
+  min-width: 0;
+}
+
+.difficulty__exit :deep(.v-btn__content) {
+  min-width: 0;
+}
+
+.difficulty__exit-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .difficulty__body {
@@ -147,5 +168,24 @@ const grids = computed(() =>
   color: var(--mosaic-muted);
   font-size: 0.78rem;
   letter-spacing: 0.01em;
+}
+
+/* Narrow screens: exit moves under the heading instead of off the edge. */
+@media (max-width: 599px) {
+  .difficulty__head {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .difficulty__heading {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 419px) {
+  .difficulty__head {
+    align-items: stretch;
+  }
 }
 </style>

@@ -71,6 +71,7 @@ function backToGallery(): void {
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+  min-width: 0;
 }
 
 .app-header__title {
@@ -89,6 +90,19 @@ function backToGallery(): void {
 @media (max-width: 599px) {
   .app-header__subtitle {
     display: none;
+  }
+
+  /* Narrow screens: the language switch moves under the game title. */
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 419px) {
+  .app-header {
+    align-items: stretch;
   }
 }
 </style>

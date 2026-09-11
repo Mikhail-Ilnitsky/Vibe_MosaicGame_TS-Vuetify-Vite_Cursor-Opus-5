@@ -63,12 +63,17 @@ onBeforeUnmount(() => window.clearTimeout(revealTimer))
         <v-btn
           variant="tonal"
           size="large"
+          class="game__action"
           :disabled="solved"
           @click="showOriginal = !showOriginal"
         >
-          {{ showOriginal ? t('game.hideOriginal') : t('game.showOriginal') }}
+          <span class="game__action-label">
+            {{ showOriginal ? t('game.hideOriginal') : t('game.showOriginal') }}
+          </span>
         </v-btn>
-        <v-btn variant="text" size="large" @click="emit('exit')">{{ t('exit') }}</v-btn>
+        <v-btn variant="text" size="large" class="game__action" @click="emit('exit')">
+          <span class="game__action-label">{{ t('exit') }}</span>
+        </v-btn>
       </div>
     </div>
 
@@ -98,8 +103,13 @@ onBeforeUnmount(() => window.clearTimeout(revealTimer))
       <div v-if="solved" class="game__win">
         <p class="game__win-title">{{ t('game.win') }}</p>
         <p class="game__win-moves">{{ t('game.winMoves', { count: moves }) }}</p>
-        <v-btn color="primary" size="x-large" class="game__win-btn" @click="emit('newGame')">
-          {{ t('game.newGame') }}
+        <v-btn
+          color="primary"
+          size="x-large"
+          class="game__win-btn game__action"
+          @click="emit('newGame')"
+        >
+          <span class="game__action-label">{{ t('game.newGame') }}</span>
         </v-btn>
       </div>
       <p v-else class="game__hint text-muted">{{ t('game.hint') }}</p>
@@ -133,6 +143,22 @@ onBeforeUnmount(() => window.clearTimeout(revealTimer))
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+}
+
+.game__action {
+  min-width: 0;
+}
+
+.game__action :deep(.v-btn__content) {
+  min-width: 0;
+}
+
+/* Long labels are cut instead of pushing the button off the screen. */
+.game__action-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .game__area {
@@ -188,6 +214,33 @@ onBeforeUnmount(() => window.clearTimeout(revealTimer))
 @media (max-width: 599px) {
   .game__hint {
     display: none;
+  }
+
+  /* Narrow screens: exit sits centred above the original toggle. */
+  .game__bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .game__actions {
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 419px) {
+  .game__actions {
+    align-items: stretch;
+  }
+
+  .game__action {
+    width: 100%;
+  }
+
+  .game__win-btn {
+    width: 100%;
   }
 }
 </style>

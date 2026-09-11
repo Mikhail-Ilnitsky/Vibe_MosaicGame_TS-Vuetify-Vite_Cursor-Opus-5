@@ -28,6 +28,7 @@ function setLocale(value: Locale): void {
 
 <style scoped>
 .language-switcher {
+  flex: 0 0 auto;
   border-color: var(--mosaic-line);
 }
 
@@ -35,5 +36,17 @@ function setLocale(value: Locale): void {
   letter-spacing: 0.08em;
   font-weight: 500;
   min-width: 52px;
+}
+
+/* Very narrow screens: the switch spans the full width, halves for RU and EN. */
+@media (max-width: 419px) {
+  .language-switcher {
+    width: 100%;
+  }
+
+  .language-switcher :deep(.v-btn) {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 }
 </style>
