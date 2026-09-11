@@ -1,0 +1,64 @@
+:root {
+  --mosaic-ink: #1c1c1e;
+  --mosaic-muted: #6b7280;
+  --mosaic-line: rgba(28, 28, 30, 0.08);
+  --mosaic-accent: #ffe800;
+  font-family: 'Inter', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  color: var(--mosaic-ink);
+}
+
+html,
+body,
+#app {
+  height: 100dvh;
+  margin: 0;
+  background: #fff;
+}
+
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* The whole app is one non-scrolling column, so the mosaic can measure the
+   space that is actually left for it. */
+.v-application,
+.v-application__wrap {
+  height: 100%;
+  min-height: 100%;
+}
+
+.v-main {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0;
+}
+
+.app-screen {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  padding: clamp(12px, 2.4vw, 28px);
+  gap: clamp(8px, 1.6vh, 20px);
+  box-sizing: border-box;
+}
+
+.screen-title {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.screen-subtitle {
+  margin: 0;
+  color: var(--mosaic-muted);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+}
+
+.text-muted {
+  color: var(--mosaic-muted);
+}
