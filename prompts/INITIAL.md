@@ -6,6 +6,7 @@
 
 - Vue 3, TypeScript 5, Vuetify 3
 - Сборка: Vite 8
+- Компоненты Vue писать только на Composition API (`<script setup lang="ts">`). Options API не использовать
 - Весь код приложения должен лежать в папке `src`. Конфиги сборки и CI (`vite.config`, `index.html`, `.github`, `.cursor`) — вне `src`.
 - Чистый фронтенд (SPA). База данных и бэкенд **не** требуются
 
