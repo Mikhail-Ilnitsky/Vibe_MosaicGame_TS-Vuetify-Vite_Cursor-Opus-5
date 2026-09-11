@@ -79,6 +79,6 @@ RU, если `navigator.language` содержит `ru`, иначе EN; при �
 ### Деплой
 
 `.github/workflows/deploy.yml`: Node 22, `actions/checkout@v5`, `actions/setup-node@v5`,
-`actions/configure-pages@v5`, `actions/upload-pages-artifact@v4`, `actions/deploy-pages@v4`.
+`actions/configure-pages@v6`, `actions/upload-pages-artifact@v5`, `actions/deploy-pages@v5`.
 В Settings → Pages источник — GitHub Actions. `base` в `vite.config.ts`: `/` в разработке и
 `/<имя-репозитория>/` в production; CI передаёт путь через `BASE_PATH`.
